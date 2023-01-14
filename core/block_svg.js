@@ -172,6 +172,7 @@ Blockly.BlockSvg.prototype.initSvg = function() {
   if (!this.getSvgRoot().parentNode) {
     this.workspace.getCanvas().appendChild(this.getSvgRoot());
   }
+  else
   {
     //find the event broadcaster that sends the "hide_this_chunk" message.
     if(this.type === "event_broadcast" && this.id != "event_broadcast"  && this.inputList.length == 1 && this.inputList[0].name === "BROADCAST_INPUT")
