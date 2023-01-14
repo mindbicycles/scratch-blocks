@@ -424,7 +424,14 @@ Blockly.Workspace.prototype.getVariableById = function(id) {
  *     passed in type. An empty array if none are found.
  */
 Blockly.Workspace.prototype.getVariablesOfType = function(type) {
-  return this.variableMap_.getVariablesOfType(type);
+
+  let filteredVariablesList = this.variableMap_.getVariablesOfType(type);
+  //this is to remove the variables starting with _ from the dropdown list of the setter / modifier / deleter blocks
+  for(let i= filteredVariablesList.length-1 ; i>=0 ; i-- )
+    if(filteredVariablesList[i].name.startsWith("_"))
+      filteredVariablesList.splice(i, 1); // emove from list
+
+  return filteredVariablesList;
 };
 
 /**
