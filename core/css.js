@@ -127,6 +127,10 @@ Blockly.Css.setCursor = function(cursor) {
  * Array making up the CSS content for Blockly.
  */
 Blockly.Css.CONTENT = [
+  '.hide_this_chunk {',
+  '  visibility: hidden;',
+  '} ',
+
   '.blocklySvg {',
     'background-color: $colour_workspace;',
     'outline: none;',
