@@ -171,36 +171,14 @@ Blockly.BlockSvg.prototype.initSvg = function() {
 
   if (!this.getSvgRoot().parentNode) {
     this.workspace.getCanvas().appendChild(this.getSvgRoot());
-  }
-  else
-  {
-    //find the event broadcaster that sends the "hide_this_chunk" message.
-    if(this.type === "event_broadcast" && this.id != "event_broadcast"  && this.inputList.length == 1 && this.inputList[0].name === "BROADCAST_INPUT")
-    {
-      //console.log("initsvg this.id:"+this.id+"  --type:"+ this.type+"   --parent:"+this.getSvgRoot().parentNode.id);
-      if (this.inputList[0].connection) 
-      {
-        //check if the variable of this broadcaster is "hide_this_chunk"
-        var block = this.inputList[0].connection.targetBlock();
-        if (block && block == "hide_this_chunk")
-        {
-          //found the event broadcaster that sends the "hide_this_chunk" message. Now find the top Block of the chunk 
-          var topBlock = block.parentBlock_;
-          while(topBlock.parentBlock_ != null)
-          {
-            topBlock = topBlock.parentBlock_;
-          }
 
-          //add css to hide the whole chunk
-          Blockly.utils.addClass( /** @type {!Element} */ (topBlock.svgGroup_), 'hide_this_chunk');
-        }
-      }
+    //hide chunks of code that have a comment saying "hide"
+    if(this.getCommentText() == "hide")
+    {
+      //add css to hide the whole chunk
+      Blockly.utils.addClass( /** @type {!Element} */ (this.svgGroup_), 'hide_this_chunk');
     }
 
-
-  }
-
-    
     //hide variables starting with underscore
     if(this.type == "data_variable"  && this.inputList.length == 1)
     {
@@ -213,6 +191,7 @@ Blockly.BlockSvg.prototype.initSvg = function() {
         Blockly.utils.addClass( /** @type {!Element} */ (this.svgGroup_), 'hide_this_chunk');
       }
     }
+  }
 };
 
 /**

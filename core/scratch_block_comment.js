@@ -348,6 +348,11 @@ Blockly.ScratchBlockComment.prototype.setVisible = function(visible) {
   }
   // Save the bubble stats before the visibility switch.
   var text = this.getText();
+
+  //don't show the comments that are just "hide" because they are used in scratch-puzzle to hide chunks of code we don't want to show
+  if(text == "hide")
+    return;
+
   var size = this.getBubbleSize();
   if (visible) {
     // Auto position this comment, if necessary.
