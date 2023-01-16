@@ -176,19 +176,17 @@ Blockly.BlockSvg.prototype.initSvg = function() {
     if(this.getCommentText() == "hide")
     {
       //add css to hide the whole chunk
-      Blockly.utils.addClass( /** @type {!Element} */ (this.svgGroup_), 'hide_this_chunk');
+      this.svgGroup_.setAttribute('display', 'none');
     }
 
     //hide variables starting with underscore
     if(this.type == "data_variable"  && this.inputList.length == 1)
     {
-      //console.log("- - this.id:"+this.id+"  --this.getSvgRoot().parentNode:"+this.getSvgRoot().parentNode);
+      //console.log("this.id:"+this.id+"  --this.getSvgRoot().parentNode:"+this.getSvgRoot().parentNode);
       //console.dir(this);
       if(this.inputList[0].fieldRow[0].variable_.name.startsWith("_"))
       {
-        //console.log();
-        //console.trace("- - hiding variable:"+this.id);
-        Blockly.utils.addClass( /** @type {!Element} */ (this.svgGroup_), 'hide_this_chunk');
+        this.svgGroup_.setAttribute('display', 'none');
       }
     }
   }
