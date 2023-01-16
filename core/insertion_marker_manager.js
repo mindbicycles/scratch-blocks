@@ -484,6 +484,18 @@ Blockly.InsertionMarkerManager.prototype.maybeShowPreview_ = function(candidate)
     return;
   }
 
+  //find the top Block of the chunk to see if it has a "hide" comment
+  var topBlock = closest.sourceBlock_;
+  while(topBlock.parentBlock_ != null)
+  {
+    topBlock = topBlock.parentBlock_;
+  }
+
+  if(topBlock.getCommentText() == "hide")
+  {
+    return; //hidden blocks are not a candidate
+  }
+
   // Something went wrong and we're trying to connect to an invalid connection.
   if (closest == this.closestConnection_ ||
       closest.sourceBlock_.isInsertionMarker()) {
