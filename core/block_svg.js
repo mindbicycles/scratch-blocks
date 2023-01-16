@@ -184,7 +184,7 @@ Blockly.BlockSvg.prototype.initSvg = function() {
     {
       //console.log("this.id:"+this.id+"  --this.getSvgRoot().parentNode:"+this.getSvgRoot().parentNode);
       //console.dir(this);
-      if(this.inputList[0].fieldRow[0].variable_.name.startsWith("_"))
+      if(this.inputList[0].fieldRow[0].variable_ && this.inputList[0].fieldRow[0].variable_.name.startsWith("_"))
       {
         this.svgGroup_.setAttribute('display', 'none');
       }
