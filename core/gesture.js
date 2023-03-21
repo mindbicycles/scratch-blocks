@@ -587,11 +587,13 @@ Blockly.Gesture.prototype.handleUp = function(e) {
     this.workspaceDragger_.endDrag(this.currentDragDeltaXY_);
   } else if (this.isBubbleClick_()) {
     // Bubbles are in front of all fields and blocks.
-    this.doBubbleClick_();
+    //console.log("Blockly.Gesture.prototype.handleUp doBubbleClick prevented");
+    //this.doBubbleClick_();
   } else if (this.isFieldClick_()) {
     this.doFieldClick_();
   } else if (this.isBlockClick_()) {
-    this.doBlockClick_();
+    //console.log("Blockly.Gesture.prototype.handleUp doBlockClick_ prevented");
+    //this.doBlockClick_();
   } else if (this.isWorkspaceClick_()) {
     this.doWorkspaceClick_();
   }
@@ -634,6 +636,9 @@ Blockly.Gesture.prototype.cancel = function() {
  * @package
  */
 Blockly.Gesture.prototype.handleRightClick = function(e) {
+  //console.log("Blockly.Gesture.prototype.handleRightClick prevented");
+
+  /*
   if (this.targetBlock_) {
     this.bringBlockToFront_();
     Blockly.hideChaff(this.flyout_);
@@ -644,7 +649,7 @@ Blockly.Gesture.prototype.handleRightClick = function(e) {
     Blockly.hideChaff();
     this.startWorkspace_.showContextMenu_(e);
   }
-
+*/
   // TODO: Handle right-click on a bubble.
   e.preventDefault();
   e.stopPropagation();
